@@ -130,6 +130,7 @@ h1 {
   background-color: #46432f;
   text-align: center;
   text-transform: uppercase;
+  border-radius: 5px;
 }
 
 .player-symbol {
