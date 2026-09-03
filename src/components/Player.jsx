@@ -1,33 +1,34 @@
 import { useState } from 'react'
 
-export default function Player({ name, symbol }) {
+export default function Player({ initialname, symbol }) {
     const [isEditing, setIsEditing] = useState(false)
-    const [player, setPlayer] = useState("")
+    const [playerName, setPlayerName] = useState(initialname)
 
     // function saveName(e) {
     //     const value = e.target.value // ANOTHER APPROACH.
     //     setPlayer(value)
-    // }
+    // } 
 
-    function handleKey(e) {
+    function handleKey(e) { 
         if(e.key === 'Enter') {
             setIsEditing(false)
         }
     }
 
-    const handleChange = (e) => {
-        setPlayer(e.target.value)
+    const handleChange = (e) => { // how is 'e' is an object?
+        console.log(e)
+        setPlayerName(e.target.value)
     }
     function handleEditClick() {
         setIsEditing((editing) => !editing) 
         
     }
     
-    let playerName = <span className="player-name"> { player } </span>
+    let EditPlayerName = <span className="player-name"> { playerName } </span>
     if(isEditing) {
-        playerName = (
+        EditPlayerName = (
             <>
-            <input type="text" required onChange={handleChange} value={player} onKeyDown={handleKey} />
+            <input type="text" required onChange={handleChange} value={playerName} onKeyDown={handleKey} />
             </>
         )
     }
@@ -35,7 +36,7 @@ export default function Player({ name, symbol }) {
     return (
         <li>
           <span className="player">
-             {playerName}
+             {EditPlayerName}
              <span className="player-symbol">{ symbol }</span>
              {isEditing ? <button onClick={handleEditClick}>Save</button> : <button onClick={handleEditClick}>Edit</button>}
               </span>
