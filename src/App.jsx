@@ -10,6 +10,7 @@ function App() {
     setActivePlayer((currActivePlayer) => currActivePlayer === "X" ? "O" : 'X')
   }
 
+  // console.log(activePlayer, "HERE DUDE")
   return ( <main>
     <div id="game-container">
       <ol id="players" className="highlight-player">
