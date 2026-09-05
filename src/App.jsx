@@ -60,6 +60,9 @@ function App() {
       })
     }
 
+    function handleRestart() {
+      setGameTurns([]);
+    }
 
   console.log(activePlayer, "HERE DUDE")
   return ( <main>
@@ -68,7 +71,7 @@ function App() {
         <Player initialname="Player 1" isActive={activePlayer === 'X'}/>
         <Player initialname="Player 2" isActive={activePlayer === 'O'}/>
       </ol>
-      {(winner || hasDraw) && <GameOver winner={winner}/>}
+      {(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRestart}/>}
       <GameBoard  onSelectSquare={handleSelectSquare} 
                   board={gameBoard}
       />
