@@ -46,11 +46,12 @@ function App() {
       const secondSquareSymbol = gameBoard[combination[1].row][combination[1].column]
       const thirdSquareSymbol = gameBoard[combination[2].row][combination[2].column]
 
-      if (firstSquareSymbol && 
+      if (
+        firstSquareSymbol && 
         firstSquareSymbol === secondSquareSymbol && 
         firstSquareSymbol === thirdSquareSymbol)
         {
-          winner = firstSquareSymbol;
+          winner = players[firstSquareSymbol];
         }
    }
    const hasDraw = gameTurns.length === 9 && !winner;
@@ -82,8 +83,10 @@ function App() {
   return ( <main>
     <div id="game-container">
       <ol id="players" className= "highlight-player">
-        <Player initialname="Player 1" isActive={activePlayer === 'X'}/>
-        <Player initialname="Player 2" isActive={activePlayer === 'O'}/>
+        <Player initialname="Player 1" isActive={activePlayer === 'X'}
+       onChangeName={handlePlayerNameChange} />
+        <Player initialname="Player 2" isActive={activePlayer === 'O'}
+       onChangeName={handlePlayerNameChange} />
       </ol>
       {(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRestart}/>}
       <GameBoard  onSelectSquare={handleSelectSquare} 
